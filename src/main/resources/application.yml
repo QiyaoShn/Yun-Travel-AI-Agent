@@ -1,0 +1,75 @@
+spring:
+  application:
+    name: yun-ai-agent
+  profiles:
+    active: local
+  ai:
+    mcp:
+      client:
+        stdio:
+          servers-configuration: classpath:mcp-servers.json
+  #Redis 配置
+  data:
+    redis:
+      database: 1 #1号数据库
+      host: 127.0.0.1
+      port: 6379
+      timeout: 5000
+  #数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yun-ai-agent
+    username: root
+    password: 20080818sqy
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  #Elasticsearch 配置
+  elasticsearch:
+    uris: http://localhost:9200
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.yupi.yunaiagent.data.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+# Elasticsearch 索引配置
+elasticsearch:
+  index-name: travel_documents
+  dimensions: 1536
+  similarity: cosine
+  bulk-size: 100
+  model-name: text-embedding-v3
+# 知识库配置
+knowledge-base:
+  auto-init: true
+  init-on-startup: false  # 开发环境设为 false，生产环境设为 true
+# springdoc-openapi
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.yupi.yunaiagent.controller
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn

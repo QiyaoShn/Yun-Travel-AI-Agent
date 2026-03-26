@@ -1,0 +1,13 @@
+# 使用 spring-ai-starter-mcp-server
+spring:
+  ai:
+    mcp:
+      server:
+        name: yun-image-search-mcp-server
+        version: 1.0.0
+        stdio: true
+        type: SYNC # 同步
+  # stdio
+  main:
+    web-application-type: none
+    banner-mode: off
