@@ -1,7 +1,8 @@
-package com.yupi.yunaiagent\store;
+package com.yupi.yunaiagent.store;
 
 import com.yupi.yunaiagent.data.entity.TravelDocumentEntity;
 import com.yupi.yunaiagent.data.mapper.TravelDocumentMapper;
+import com.yupi.yunaiagent.store.DocumentStoreService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
